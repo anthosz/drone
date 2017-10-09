@@ -36,7 +36,7 @@ pipeline:
 
   publish_server:
     image: plugins/docker
-    repo: gboo/drone
+    repo: anthosz/drone
     secrets: [ docker_username, docker_password ]
     tag: [ latest ]
     when:
@@ -45,7 +45,7 @@ pipeline:
 
   publish_agent_amd64:
     image: plugins/docker
-    repo: gboo/drone-agent
+    repo: anthosz/drone-agent
     dockerfile: Dockerfile.agent
     secrets: [ docker_username, docker_password ]
     tag: [ latest ]
@@ -55,7 +55,7 @@ pipeline:
 
   release_server:
     image: plugins/docker
-    repo: gboo/drone
+    repo: anthosz/drone
     secrets: [ docker_username, docker_password ]
     tag: [ 0.8, 0.8.0 ]
     when:
@@ -63,7 +63,7 @@ pipeline:
 
   release_agent:
     image: plugins/docker
-    repo: gboo/drone-agent
+    repo: anthosz/drone-agent
     dockerfile: Dockerfile.agent
     secrets: [ docker_username, docker_password ]
     tag: [ 0.8, 0.8.0 ]
