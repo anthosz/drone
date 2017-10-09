@@ -1,6 +1,6 @@
 workspace:
   base: /go
-  path: src/github.com/drone/drone
+  path: src/github.com/anthosz/drone
 
 pipeline:
   test:
@@ -20,13 +20,13 @@ pipeline:
       - DATABASE_DRIVER=mysql
       - DATABASE_CONFIG=root@tcp(mysql:3306)/test?parseTime=true
     commands:
-      - go test github.com/drone/drone/store/datastore
+      - go test github.com/anthosz/drone/store/datastore
 
   build:
     image: golang:1.8
     commands:
-      - go build -ldflags '-extldflags "-static" -X github.com/drone/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-server github.com/drone/drone/cmd/drone-server
-      - go build -ldflags '-X github.com/drone/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-agent github.com/drone/drone/cmd/drone-agent
+      - go build -ldflags '-extldflags "-static" -X github.com/anthosz/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-server github.com/anthosz/drone/cmd/drone-server
+      - go build -ldflags '-X github.com/anthosz/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-agent github.com/anthosz/drone/cmd/drone-agent
     when:
       event: [ push, tag ]
     environment:
@@ -36,7 +36,7 @@ pipeline:
 
   publish_server:
     image: plugins/docker
-    repo: drone/drone
+    repo: anthosz/drone
     secrets: [ docker_username, docker_password ]
     tag: [ latest ]
     when:
@@ -45,7 +45,7 @@ pipeline:
 
   release_server:
     image: plugins/docker
-    repo: drone/drone
+    repo: anthosz/drone
     secrets: [ docker_username, docker_password ]
     tag: [ 0.8, 0.8.1 ]
     when:
