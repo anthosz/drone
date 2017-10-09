@@ -20,7 +20,7 @@ pipeline:
       - DATABASE_DRIVER=mysql
       - DATABASE_CONFIG=root@tcp(mysql:3306)/test?parseTime=true
     commands:
-      - go test github.com/anthosz/drone/store/datastore
+      - go test github.com/drone/drone/store/datastore
 
   build:
     image: golang:1.8
