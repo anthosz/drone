@@ -1,6 +1,6 @@
 workspace:
   base: /go
-  path: src/github.com/anthosz/drone
+  path: src/drone
 
 pipeline:
   test:
@@ -20,13 +20,13 @@ pipeline:
       - DATABASE_DRIVER=mysql
       - DATABASE_CONFIG=root@tcp(mysql:3306)/test?parseTime=true
     commands:
-      - go test github.com/drone/drone/store/datastore
+      - go test /go/src/drone/store/datastore
 
   build:
     image: golang:1.8
     commands:
-      - go build -ldflags '-extldflags "-static" -X github.com/drone/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-server github.com/anthosz/drone/cmd/drone-server
-      - go build -ldflags '-X github.com/drone/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-agent github.com/drone/drone/cmd/drone-agent
+      - go build -ldflags '-extldflags "-static" -X /go/src/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-server /go/src/drone/cmd/drone-server
+      - go build -ldflags '-X /go/src/drone/version.VersionDev=build.'${DRONE_BUILD_NUMBER} -o release/drone-agent /go/src/drone/cmd/drone-agent
     when:
       event: [ push, tag ]
     environment:
