@@ -139,8 +139,6 @@ type Store interface {
 	TaskList() ([]*model.Task, error)
 	TaskInsert(*model.Task) error
 	TaskDelete(string) error
-
-	Ping() error
 }
 
 // GetUser gets a user by unique ID.
