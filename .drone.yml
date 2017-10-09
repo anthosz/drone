@@ -43,30 +43,11 @@ pipeline:
       branch: release/*
       event: push
 
-  publish_agent_amd64:
-    image: plugins/docker
-    repo: anthosz/drone-agent
-    dockerfile: Dockerfile.agent
-    secrets: [ docker_username, docker_password ]
-    tag: [ latest ]
-    when:
-      branch: release/*
-      event: push
-
   release_server:
     image: plugins/docker
     repo: anthosz/drone
     secrets: [ docker_username, docker_password ]
-    tag: [ 0.8, 0.8.0 ]
-    when:
-      event: tag
-
-  release_agent:
-    image: plugins/docker
-    repo: anthosz/drone-agent
-    dockerfile: Dockerfile.agent
-    secrets: [ docker_username, docker_password ]
-    tag: [ 0.8, 0.8.0 ]
+    tag: [ 0.8, 0.8.1 ]
     when:
       event: tag
 
