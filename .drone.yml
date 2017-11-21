@@ -45,9 +45,9 @@ pipeline:
 
   release_server:
     image: plugins/docker
-    repo: anthosz/drone
+    repo: fpfis/drone
     secrets: [ docker_username, docker_password ]
-    tag: [ 0.8, 0.8.1, 0.8.2 ]
+    tag: [ 0.8, 0.8.2 ]
     when:
       event: tag
 
